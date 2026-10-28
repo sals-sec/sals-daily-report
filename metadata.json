@@ -1,0 +1,6 @@
+{
+  "name": "SALS Security Daily Report System",
+  "description": "Enterprise online daily security reporting system for SEM ALP Logistics with CCTV auditing, guard deployment, incident logging, shift handover, and export tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

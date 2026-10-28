@@ -1,0 +1,576 @@
+@import "tailwindcss";
+
+/* ── SALS Official Security Daily Report Design System ──
+ * Based on SALS (SEM ALP Logistics Sdn. Bhd. · https://www.sals.com.my/)
+ * Form in pure white background across light, dark, and monochrome modes.
+ */
+
+:root {
+  --navy: #17181c;          /* SALS Obsidian Charcoal for Header & Section Bars */
+  --accent: #ff2b00;        /* SALS Flame Red Accent */
+  --primary: #ff2b00;       /* Primary CTA & Badges */
+  --primary-hover: #e02600;
+  --dark: #0f0f12;          /* Pure Neutral Dark (Zero Blue) */
+  --hdr: #fde3dc;           /* Soft warm peach table header */
+  --hdr-text: #7a1a05;      /* Crisp dark crimson text in th */
+  --label: #f6f1ee;         /* Soft warm-neutral cell background */
+  --bg: #f4f2f0;            /* Canvas background in light mode */
+  --card: #ffffff;          /* FORM IS STRICTLY WHITE */
+  --ink: #1d1d22;           /* Deep ink text */
+  --line: #d6cdc8;          /* Clean border lines */
+  --muted: #6e6762;
+  --faulty-bad: #ff2b00;    /* High-visibility alarm indicator */
+  --bar-bg: #17181c;
+  --bar-border: #ff2b00;
+}
+
+/* ── Black & White Monochrome Mode (high-contrast photocopy & audit) ── */
+.theme-bw {
+  --navy: #000000;
+  --accent: #000000;
+  --primary: #000000;
+  --primary-hover: #262626;
+  --dark: #000000;
+  --hdr: #e2e8f0;
+  --hdr-text: #000000;
+  --label: #f1f5f9;
+  --bg: #f8fafc;
+  --card: #ffffff;          /* FORM IS STRICTLY WHITE */
+  --ink: #000000;
+  --line: #64748b;
+  --muted: #64748b;
+  --faulty-bad: #000000;
+  --bar-bg: #000000;
+  --bar-border: #333333;
+}
+
+/* ── Dark Mode: Pure Obsidian Neutral Dark (Outer Canvas is #0f0f12, FORM IS WHITE) ── */
+.dark:not(.theme-bw) {
+  --navy: #17181c;
+  --accent: #ff2b00;
+  --primary: #ff2b00;
+  --primary-hover: #ff4724;
+  --dark: #0f0f12;
+  --hdr: #fde3dc;
+  --hdr-text: #7a1a05;
+  --label: #f6f1ee;
+  --bg: #0f0f12;            /* Canvas is pure neutral obsidian dark - ZERO BLUE */
+  --card: #ffffff;          /* FORM SHEET IS STRICTLY WHITE */
+  --ink: #1d1d22;
+  --line: #d6cdc8;
+  --muted: #a8a09a;
+  --faulty-bad: #ff2b00;
+  --bar-bg: #17181c;
+  --bar-border: #ff2b00;
+}
+
+.dark.theme-bw {
+  --navy: #000000;
+  --accent: #000000;
+  --primary: #000000;
+  --primary-hover: #262626;
+  --dark: #000000;
+  --hdr: #e2e8f0;
+  --hdr-text: #000000;
+  --label: #f1f5f9;
+  --bg: #0f0f12;            /* Outer canvas is dark - ZERO BLUE */
+  --card: #ffffff;          /* FORM SHEET IS STRICTLY WHITE */
+  --ink: #000000;
+  --line: #64748b;
+  --muted: #a8a09a;
+  --faulty-bad: #000000;
+  --bar-bg: #000000;
+  --bar-border: #333333;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── SALS Sticky Application Bar ── */
+.bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--navy);
+  border-bottom: 3px solid var(--accent);
+  color: #ffffff;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  padding: 8px 16px;
+}
+
+.bar .st {
+  margin-right: auto;
+  font-size: 12px;
+  opacity: 0.9;
+}
+
+/* ── SALS FORM SHEET: ALWAYS PURE WHITE BACKGROUND ACROSS ALL THEMES ── */
+.sheet,
+.sals-sheet {
+  max-width: 1000px;
+  margin: 16px auto;
+  background-color: #ffffff !important;
+  color: #1d1d22 !important;
+  border: 1px solid var(--line) !important;
+  border-radius: 12px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+/* Strict white sheet guarantee in dark mode */
+.dark .sheet,
+.dark .sals-sheet {
+  background-color: #ffffff !important;
+  color: #1d1d22 !important;
+  border-color: var(--line) !important;
+  box-shadow: 0 10px 36px rgba(0, 0, 0, 0.45) !important;
+}
+
+.dark .sheet *,
+.dark .sals-sheet * {
+  /* Prevent dark-mode text from bleaching inside the white sheet */
+  border-color: var(--line);
+}
+
+.dark .sheet input,
+.dark .sals-sheet input,
+.dark .sheet textarea,
+.dark .sals-sheet textarea,
+.dark .sheet select,
+.dark .sals-sheet select {
+  color: #1d1d22 !important;
+  background-color: transparent !important;
+}
+
+/* ── Form Header ── */
+.head,
+.sals-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  border-bottom: 4px solid var(--accent) !important;
+  background-color: #ffffff !important;
+}
+
+.head img,
+.sals-logo {
+  height: 54px;
+  width: auto;
+  object-fit: contain;
+}
+
+.theme-bw .head img,
+.theme-bw .sals-logo {
+  filter: grayscale(100%) contrast(120%);
+}
+
+.head h1 {
+  margin: 0;
+  font-size: 22px;
+  letter-spacing: 0.08em;
+  color: var(--ink) !important;
+  flex: 1;
+  text-align: center;
+  font-weight: 800;
+}
+
+.docno {
+  font-size: 11px;
+  color: var(--muted) !important;
+  text-align: right;
+  line-height: 1.35;
+}
+
+/* ── Section Title Bar ── */
+.sec,
+.sals-sec {
+  margin: 0;
+  background-color: var(--navy) !important;
+  color: #ffffff !important;
+  border-left: 5px solid var(--accent) !important;
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sec button,
+.sals-sec button {
+  padding: 2px 10px;
+  font-size: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: transparent;
+  color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.sec button:hover,
+.sals-sec button:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+/* ── General Info Grid (Facility, Day, Shift, Date, Officer, Provider) ── */
+.info {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  background-color: #ffffff !important;
+}
+
+.info label {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  border-bottom: 1px solid var(--line);
+  border-right: 1px solid var(--line);
+  background-color: #ffffff !important;
+}
+
+.info label span {
+  background-color: var(--label) !important;
+  padding: 8px 10px;
+  font-weight: 600;
+  color: var(--ink) !important;
+}
+
+.info label > *:last-child {
+  padding: 8px 10px;
+}
+
+@media (max-width: 700px) {
+  .info {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Shift Radio Selector ── */
+.shift {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 8px 10px;
+  background-color: #ffffff !important;
+}
+
+.shift label {
+  display: flex !important;
+  grid-template-columns: none !important;
+  border: 0 !important;
+  gap: 6px;
+  align-items: center;
+  background-color: transparent !important;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.shift input {
+  width: auto !important;
+  cursor: pointer;
+}
+
+/* ── Form Inputs & Textareas ── */
+input,
+textarea,
+select,
+.sals-input,
+.sals-textarea,
+.sals-select {
+  font: inherit;
+  color: var(--ink) !important;
+  background: transparent !important;
+  border: 0;
+  width: 100%;
+  padding: 7px 8px;
+  outline: none;
+}
+
+textarea,
+.sals-textarea {
+  resize: vertical;
+  min-height: 34px;
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+.sals-input:focus,
+.sals-textarea:focus,
+.sals-select:focus {
+  background: rgba(255, 43, 0, 0.07) !important;
+  box-shadow: inset 0 0 0 2px var(--accent) !important;
+}
+
+.theme-bw input:focus,
+.theme-bw textarea:focus,
+.theme-bw select:focus {
+  background: rgba(0, 0, 0, 0.05) !important;
+  box-shadow: inset 0 0 0 2px #000000 !important;
+}
+
+/* ── Table Styling ── */
+.tw {
+  overflow-x: auto;
+  background-color: #ffffff !important;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+  background-color: #ffffff !important;
+}
+
+th,
+.sals-th {
+  background-color: var(--hdr) !important;
+  color: var(--hdr-text, #7a1a05) !important;
+  text-align: left;
+  padding: 7px 8px;
+  font-size: 12px;
+  font-weight: 700;
+  border: 1px solid var(--line) !important;
+}
+
+.theme-bw th,
+.theme-bw .sals-th {
+  color: #000000 !important;
+}
+
+td,
+.sals-td {
+  border: 1px solid var(--line) !important;
+  padding: 0;
+  vertical-align: top;
+  background-color: #ffffff !important;
+  color: var(--ink) !important;
+}
+
+td.no,
+.sals-td-no {
+  width: 40px;
+  text-align: center;
+  padding: 8px 4px;
+  background-color: var(--label) !important;
+  font-weight: 600;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+}
+
+td.fixed,
+.sals-td-fixed {
+  padding: 8px;
+  background-color: var(--label) !important;
+  font-weight: 600;
+  color: var(--ink) !important;
+  border: 1px solid var(--line) !important;
+}
+
+td.num input {
+  text-align: center;
+}
+
+td.del,
+th.del {
+  width: 34px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+td.del button {
+  color: #c0392b;
+  border: 0;
+  padding: 4px 8px;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+td.del button:hover {
+  background: #ffeae6;
+}
+
+.theme-bw td.del button {
+  color: #000000;
+}
+
+.theme-bw td.del button:hover {
+  background: #e2e8f0;
+}
+
+.faulty-bad {
+  background: var(--faulty-bad, #ff2b00) !important;
+  color: #ffffff !important;
+  font-weight: 700 !important;
+}
+
+.theme-bw .faulty-bad {
+  background: #000000 !important;
+  color: #ffffff !important;
+}
+
+/* ── Handover ── */
+.ho {
+  padding: 0;
+  background-color: #ffffff !important;
+}
+
+.ho textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  background-color: #ffffff !important;
+  color: var(--ink) !important;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.5;
+  resize: vertical;
+  min-height: 70px;
+}
+
+/* ── Section 8: Sign-Off ── */
+.sign {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #ffffff !important;
+}
+
+.sign div {
+  padding: 10px 12px;
+  border-right: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background-color: #ffffff !important;
+  color: var(--ink) !important;
+}
+
+.sign b {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--navy);
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.sign input {
+  border-bottom: 1px solid var(--line) !important;
+  margin-bottom: 6px;
+  padding: 4px 6px;
+  color: var(--ink) !important;
+}
+
+@media (max-width: 700px) {
+  .sign {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Footer Notes & Verification ── */
+.note {
+  max-width: 1000px;
+  margin: 16px auto 8px;
+  color: var(--muted);
+  font-size: 12px;
+  padding: 0 8px;
+  line-height: 1.5;
+}
+
+.ver {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: center;
+  padding: 6px 6px 24px;
+}
+
+/* ── Print Specific Rules ── */
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11px !important;
+  }
+
+  .bar,
+  .note,
+  .ver,
+  .sec button,
+  .sals-sec button,
+  td.del,
+  th.del,
+  .noprint,
+  .no-print {
+    display: none !important;
+  }
+
+  .sheet,
+  .sals-sheet {
+    border: 0 !important;
+    margin: 0 !important;
+    max-width: none !important;
+    width: 100% !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background-color: #ffffff !important;
+  }
+
+  .head img,
+  .sals-logo {
+    filter: grayscale(100%) contrast(120%) !important;
+  }
+
+  .sec,
+  .sals-sec,
+  th,
+  .sals-th,
+  td.no,
+  td.fixed,
+  .sals-td-no,
+  .sals-td-fixed,
+  .info label span {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  table {
+    min-width: 0 !important;
+  }
+
+  .tw {
+    overflow: visible !important;
+  }
+
+  tr,
+  .sec,
+  .sals-sec {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+  input,
+  textarea {
+    padding: 3px 5px !important;
+    color: #000000 !important;
+  }
+
+  textarea {
+    resize: none !important;
+  }
+
+  @page {
+    size: A4 portrait;
+    margin: 10mm;
+  }
+}
